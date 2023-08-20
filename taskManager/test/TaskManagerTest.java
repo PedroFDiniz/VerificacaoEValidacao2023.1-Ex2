@@ -1,7 +1,8 @@
 package taskManager.test;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+
 import taskManager.main.Priority;
 import taskManager.main.Task;
 import taskManager.main.TaskManager;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskManagerTest {
 
@@ -24,13 +25,13 @@ public class TaskManagerTest {
 
     @Test
     public void testCreateTask() {
-        UUID taskID = taskManager.createTask("Task Test", "EOF", "2023-08-21", Priority.HIGH);
-        Map<UUID,Task> tasks = taskManager.getTasks();
+        UUID taskID = this.taskManager.createTask("Task Test", "EOF", "2023-08-21", Priority.HIGH);
+        Map<UUID,Task> tasks = this.taskManager.getTasks();
         assertEquals(1, tasks.size());
-        assertEquals("Task Test", taskManager.getTask(taskID).getTitle());
-        assertEquals("EOF", taskManager.getTask(taskID).getDescription());
-        assertEquals(LocalDate.parse("2023-08-21"), taskManager.getTask(taskID).getDate());
-        assertEquals(Priority.HIGH, tasks.get(taskID).getPriority());
+        assertEquals("Task Test", this.taskManager.getTask(taskID).getTitle());
+        assertEquals("EOF", this.taskManager.getTask(taskID).getDescription());
+        assertEquals(LocalDate.parse("2023-08-21"), this.taskManager.getTask(taskID).getDate());
+        assertEquals(Priority.HIGH, this.taskManager.getTask(taskID).getPriority());
     }
 
     @Test

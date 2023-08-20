@@ -9,7 +9,7 @@ public class TaskManager {
     private Map<UUID, Task> tasks;
 
     public TaskManager() {
-        tasks = new HashMap<>();
+       this.tasks = new HashMap<>();
     }
 
     public UUID createTask(String title, String description, String date, Priority priority){
