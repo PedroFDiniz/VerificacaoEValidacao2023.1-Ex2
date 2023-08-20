@@ -2,8 +2,14 @@ package taskManager.test;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import taskManager.main.Priority;
+import taskManager.main.Task;
+import taskManager.main.TaskManager;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -18,60 +24,69 @@ public class TaskManagerTest {
 
     @Test
     public void testCreateTask() {
-        taskID = taskManager.createTask("Task Test", "EOF", "2023-08-21", Priority.HIGH);
-        List<Task> tasks = taskManager.listTasks();
+        UUID taskID = taskManager.createTask("Task Test", "EOF", "2023-08-21", Priority.HIGH);
+        Map<UUID,Task> tasks = taskManager.getTasks();
         assertEquals(1, tasks.size());
-        assertEquals("Task Test", tasks.get(taskID).getTitle());
-        assertEquals("EOF", tasks.get(taskID).getDescription());
-        assertEquals(LocalDate.parse("2023-08-21"), tasks.get(taskID).getDueDate());
+        assertEquals("Task Test", taskManager.getTask(taskID).getTitle());
+        assertEquals("EOF", taskManager.getTask(taskID).getDescription());
+        assertEquals(LocalDate.parse("2023-08-21"), taskManager.getTask(taskID).getDate());
         assertEquals(Priority.HIGH, tasks.get(taskID).getPriority());
     }
 
     @Test
     public void testUpdateTask() {
-        taskID = taskManager.createTask("Task 0", "EOF", "2023-08-21", Priority.LOW);
+        UUID taskID = taskManager.createTask("Task 0", "EOF", "2023-08-21", Priority.LOW);
         taskManager.updateTask(taskID, "Task 0 Updated", "EOW", "2023-08-20", Priority.HIGH);
-        List<Task> tasks = taskManager.listTasks();
-        assertEquals("Task 0 Updated", tasks.get(taskID).getTitle());
-        assertEquals("EOW", tasks.get(taskID).getDescription());
-        assertEquals(LocalDate.parse("2023-08-20"), tasks.get(taskID).getDueDate());
-        assertEquals(Priority.HIGH, tasks.get(taskID).getPriority());
+        assertEquals("Task 0 Updated", taskManager.getTask(taskID).getTitle());
+        assertEquals("EOW", taskManager.getTask(taskID).getDescription());
+        assertEquals(LocalDate.parse("2023-08-20"), taskManager.getTask(taskID).getDate());
+        assertEquals(Priority.HIGH, taskManager.getTask(taskID).getPriority());
     }
 
     @Test
     public void testDeleteTask() {
-        taskID0 = taskManager.createTask("Task 0", "EOF", "2023-03-25", Priority.LOW);
-        taskID1 = taskManager.createTask("Task 1", "EOW", "2023-03-24", Priority.HIGH);
+        UUID taskID0 = taskManager.createTask("Task 0", "EOF", "2023-03-25", Priority.LOW);
+        UUID taskID1 = taskManager.createTask("Task 1", "EOW", "2023-03-24", Priority.HIGH);
 
-        List<Task> tasks = taskManager.listTasks();
+        Map<UUID,Task> tasks = taskManager.getTasks();
         assertEquals(2, tasks.size());
 
         taskManager.deleteTask(taskID0);
         assertEquals(1, tasks.size());
 
-        assertEquals("Task 1", tasks.get(taskID).getTitle());
-        assertEquals("EOW", tasks.get(taskID).getDescription());
-        assertEquals(LocalDate.parse("2023-03-24"), tasks.get(taskID).getDueDate());
-        assertEquals(Priority.LOW, tasks.get(taskID).getPriority());
+        assertEquals("Task 1", tasks.get(taskID1).getTitle());
+        assertEquals("EOW", tasks.get(taskID1).getDescription());
+        assertEquals(LocalDate.parse("2023-03-24"), tasks.get(taskID1).getDate());
+        assertEquals(Priority.LOW, tasks.get(taskID1).getPriority());
 
     }
 
     @Test
     public void testListTasks() {
-        taskID0 = taskManager.createTask("Task 0", "EOF", "2023-08-25", Priority.LOW);
-        taskID1 = taskManager.createTask("Task 1", "EOW", "2023-06-24", Priority.MEDIUM);
-        taskID2 = taskManager.createTask("Task 2", "EOL", "2023-01-26", Priority.HIGH);
+        UUID taskID0 = taskManager.createTask("Task 0", "EOF", "2023-08-25", Priority.LOW);
+        UUID taskID1 = taskManager.createTask("Task 1", "EOW", "2023-06-24", Priority.MEDIUM);
+        UUID taskID2 = taskManager.createTask("Task 2", "EOL", "2023-01-26", Priority.HIGH);
+
         List<Task> tasks = taskManager.listTasks();
-        assertEquals("Task 2", tasks.get(taskID0).getTitle());
-        assertEquals("Task 1", tasks.get(taskID1).getTitle());
-        assertEquals("Task 3", tasks.get(taskID2).getTitle());
+        LocalDate previousDate = LocalDate.MIN;
+
+        for (Task task : tasks) {
+            LocalDate currentDate = task.getDate();
+            assertTrue(currentDate.isEqual(previousDate) || currentDate.isAfter(previousDate));
+            previousDate = currentDate;
+        }
+
+        assertEquals("Task 2", tasks.get(0).getTitle());
+        assertEquals("Task 1", tasks.get(1).getTitle());
+        assertEquals("Task 0", tasks.get(2).getTitle());
+
     }
 
     @Test
     public void testChangePriority() {
-        taskID0 = taskManager.createTask("Task 0", "EOF", "2023-08-25", Priority.LOW);
+        UUID taskID0 = taskManager.createTask("Task 0", "EOF", "2023-08-25", Priority.LOW);
         taskManager.setTaskPriority(taskID0, Priority.MEDIUM);
-        List<Task> tasks = taskManager.listTasks();
+        Map<UUID,Task> tasks = taskManager.getTasks();
         assertEquals(Priority.HIGH, tasks.get(taskID0).getPriority());
     }
 }
