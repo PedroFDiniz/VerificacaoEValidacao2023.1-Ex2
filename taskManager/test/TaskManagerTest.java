@@ -58,7 +58,7 @@ public class TaskManagerTest {
         assertEquals("Task 1", tasks.get(taskID1).getTitle());
         assertEquals("EOW", tasks.get(taskID1).getDescription());
         assertEquals(LocalDate.parse("2023-03-24"), tasks.get(taskID1).getDate());
-        assertEquals(Priority.LOW, tasks.get(taskID1).getPriority());
+        assertEquals(Priority.HIGH, tasks.get(taskID1).getPriority());
 
     }
 
@@ -88,6 +88,6 @@ public class TaskManagerTest {
         UUID taskID0 = taskManager.createTask("Task 0", "EOF", "2023-08-25", Priority.LOW);
         taskManager.setTaskPriority(taskID0, Priority.MEDIUM);
         Map<UUID,Task> tasks = taskManager.getTasks();
-        assertEquals(Priority.HIGH, tasks.get(taskID0).getPriority());
+        assertEquals(Priority.MEDIUM, tasks.get(taskID0).getPriority());
     }
 }
