@@ -51,7 +51,7 @@ public class TaskManager {
         Task task = this.tasks.get(taskID);
         task.setTitle(title);
         task.setDescription(description);
-        task.setDate(date);
+        task.setDate(LocalDate.parse(date));
         task.setPriority(priority);
 
     }

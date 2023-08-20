@@ -66,13 +66,15 @@ public class TaskTest {
 
     @Test
     public void testSetDate(){
-        Task task = new Task("First", "EOF", LocalDate.parse("2023-08-20"), Priority.HIGH);
+
+        LocalDate data = LocalDate.parse("2023-08-20");
+        Task task = new Task("First", "EOF", data, Priority.HIGH);
 
         LocalDate oldDate = task.getDate();
         String dateString = "2023-08-02";
         LocalDate newDate = LocalDate.parse(dateString);
 
-        task.setDate(dateString);
+        task.setDate(newDate);
 
         assertNotEquals(oldDate, task.getDate());
         assertEquals(newDate, task.getDate());
