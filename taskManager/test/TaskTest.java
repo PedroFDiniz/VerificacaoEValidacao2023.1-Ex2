@@ -128,4 +128,12 @@ public class TaskTest {
 
     }
 
+    @Test
+    public void testToString(){
+        Task task = new Task("First", "EOF", LocalDate.parse("2023-08-20"), Priority.HIGH);
+
+        String expected = "\nTitle: First;\nDescription: EOF;\nDue Date: 2023-08-20;\nPriority: HIGH.\n";
+
+        assertEquals(expected, task.toString());
+    }
 }

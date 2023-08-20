@@ -84,10 +84,65 @@ public class TaskManagerTest {
     }
 
     @Test
+    public void testTheOrderListTasks() {
+        UUID taskID0 = taskManager.createTask("Task 0", "EOF", "2023-08-30", Priority.LOW);
+        UUID taskID1 = taskManager.createTask("Task 0", "EOF", "2023-08-27", Priority.LOW);
+        UUID taskID2 = taskManager.createTask("Task 0", "EOF", "2023-08-26", Priority.LOW);
+        UUID taskID3 = taskManager.createTask("Task 0", "EOF", "2023-08-25", Priority.LOW);
+        UUID taskID4 = taskManager.createTask("Task 1", "EOW", "2023-06-30", Priority.MEDIUM);
+        UUID taskID5 = taskManager.createTask("Task 1", "EOW", "2023-06-27", Priority.MEDIUM);
+        UUID taskID6 = taskManager.createTask("Task 1", "EOW", "2023-06-26", Priority.MEDIUM);
+        UUID taskID7 = taskManager.createTask("Task 1", "EOW", "2023-06-25", Priority.MEDIUM);
+        UUID taskID8 = taskManager.createTask("Task 2", "EOL", "2023-01-30", Priority.HIGH);
+        UUID taskID9 = taskManager.createTask("Task 2", "EOL", "2023-01-27", Priority.HIGH);
+        UUID taskID10 = taskManager.createTask("Task 2", "EOL", "2023-01-26", Priority.HIGH);
+        UUID taskID11 = taskManager.createTask("Task 2", "EOL", "2023-01-25", Priority.HIGH);
+
+        List<Task> tasks = taskManager.listTasks();
+        LocalDate previousDate = LocalDate.MIN;
+        Priority previousPriority = null;
+
+        for (Task task : tasks) {
+            LocalDate currentDate = task.getDate();
+            Priority currentPriority = task.getPriority();
+            assertTrue(currentDate.isEqual(previousDate) || currentDate.isAfter(previousDate) ||
+                    (currentDate.equals(previousDate) && currentPriority.compareTo(previousPriority) != 0));
+
+            previousDate = currentDate;
+            previousPriority = currentPriority;
+            System.out.println(task);
+        }
+
+    }
+    @Test
     public void testChangePriority() {
         UUID taskID0 = taskManager.createTask("Task 0", "EOF", "2023-08-25", Priority.LOW);
         taskManager.setTaskPriority(taskID0, Priority.MEDIUM);
         Map<UUID,Task> tasks = taskManager.getTasks();
         assertEquals(Priority.MEDIUM, tasks.get(taskID0).getPriority());
     }
+
+    @Test
+    public void testCreateWithNullParameters(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            UUID taskID0 = taskManager.createTask(null, "EOF", "2023-08-25", Priority.LOW);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            UUID taskID0 = taskManager.createTask("First", null, "2023-08-25", Priority.LOW);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            UUID taskID0 = taskManager.createTask("First", "EOF", null, Priority.LOW);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            UUID taskID0 = taskManager.createTask("First", "EOF", "2023-08-25",null);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            UUID taskID0 = taskManager.createTask(null, null, null,null);
+        });
+    }
+
 }

@@ -19,12 +19,12 @@ public class TaskManager {
         return taskID;
     }
     public List<Task> listTasks() {
-        List<Task> tasksList = new ArrayList<>();
 
-        for (Map.Entry<UUID, Task> entry : this.tasks.entrySet()) {
-            tasksList.add(entry.getValue());
+        List<Task> tasksList = new ArrayList<>(this.tasks.values());
 
-        }
+        Comparator<Task> taskComparator = Comparator.comparing(Task::getDate).thenComparing(Task::getPriority);
+
+        tasksList.sort(taskComparator);
 
         return tasksList;
     }
