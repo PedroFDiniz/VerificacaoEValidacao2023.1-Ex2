@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class Task {
     private String title;
-    private UUID id;
+    private final UUID id;
     private String description;
     private LocalDate date;
     private Priority priority;
@@ -52,5 +52,13 @@ public class Task {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    @Override
+    public String toString(){
+
+        return String.format(
+                "\nTitle: %s;\nDescription: %s;\nDue Date: %s;\nPriority: %s.\n",
+                this.title, this.description, this.date, this.priority
+        );
     }
 }

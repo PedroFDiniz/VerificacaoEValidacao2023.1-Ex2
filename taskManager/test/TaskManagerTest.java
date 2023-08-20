@@ -86,17 +86,17 @@ public class TaskManagerTest {
     @Test
     public void testTheOrderListTasks() {
         UUID taskID0 = taskManager.createTask("Task 0", "EOF", "2023-08-30", Priority.LOW);
-        UUID taskID1 = taskManager.createTask("Task 0", "EOF", "2023-08-27", Priority.LOW);
-        UUID taskID2 = taskManager.createTask("Task 0", "EOF", "2023-08-26", Priority.LOW);
-        UUID taskID3 = taskManager.createTask("Task 0", "EOF", "2023-08-25", Priority.LOW);
-        UUID taskID4 = taskManager.createTask("Task 1", "EOW", "2023-06-30", Priority.MEDIUM);
-        UUID taskID5 = taskManager.createTask("Task 1", "EOW", "2023-06-27", Priority.MEDIUM);
-        UUID taskID6 = taskManager.createTask("Task 1", "EOW", "2023-06-26", Priority.MEDIUM);
-        UUID taskID7 = taskManager.createTask("Task 1", "EOW", "2023-06-25", Priority.MEDIUM);
-        UUID taskID8 = taskManager.createTask("Task 2", "EOL", "2023-01-30", Priority.HIGH);
-        UUID taskID9 = taskManager.createTask("Task 2", "EOL", "2023-01-27", Priority.HIGH);
-        UUID taskID10 = taskManager.createTask("Task 2", "EOL", "2023-01-26", Priority.HIGH);
-        UUID taskID11 = taskManager.createTask("Task 2", "EOL", "2023-01-25", Priority.HIGH);
+        UUID taskID1 = taskManager.createTask("Task 1", "EOF", "2023-08-27", Priority.LOW);
+        UUID taskID2 = taskManager.createTask("Task 2", "EOF", "2023-08-26", Priority.LOW);
+        UUID taskID3 = taskManager.createTask("Task 3", "EOF", "2023-08-25", Priority.LOW);
+        UUID taskID4 = taskManager.createTask("Task 4", "EOW", "2023-06-30", Priority.MEDIUM);
+        UUID taskID5 = taskManager.createTask("Task 5", "EOW", "2023-06-27", Priority.MEDIUM);
+        UUID taskID6 = taskManager.createTask("Task 6", "EOW", "2023-06-26", Priority.MEDIUM);
+        UUID taskID7 = taskManager.createTask("Task 7", "EOW", "2023-06-25", Priority.MEDIUM);
+        UUID taskID8 = taskManager.createTask("Task 8", "EOL", "2023-01-30", Priority.HIGH);
+        UUID taskID9 = taskManager.createTask("Task 9", "EOL", "2023-01-27", Priority.HIGH);
+        UUID taskID10 = taskManager.createTask("Task 10", "EOL", "2023-01-26", Priority.HIGH);
+        UUID taskID11 = taskManager.createTask("Task 11", "EOL", "2023-01-25", Priority.HIGH);
 
         List<Task> tasks = taskManager.listTasks();
         LocalDate previousDate = LocalDate.MIN;
@@ -110,7 +110,6 @@ public class TaskManagerTest {
 
             previousDate = currentDate;
             previousPriority = currentPriority;
-            System.out.println(task);
         }
 
     }
@@ -125,24 +124,57 @@ public class TaskManagerTest {
     @Test
     public void testCreateWithNullParameters(){
         assertThrows(IllegalArgumentException.class, () -> {
-            UUID taskID0 = taskManager.createTask(null, "EOF", "2023-08-25", Priority.LOW);
+            taskManager.createTask(null, "EOF", "2023-08-25", Priority.LOW);
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            UUID taskID0 = taskManager.createTask("First", null, "2023-08-25", Priority.LOW);
+            taskManager.createTask("First", null, "2023-08-25", Priority.LOW);
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            UUID taskID0 = taskManager.createTask("First", "EOF", null, Priority.LOW);
+             taskManager.createTask("First", "EOF", null, Priority.LOW);
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            UUID taskID0 = taskManager.createTask("First", "EOF", "2023-08-25",null);
+            taskManager.createTask("First", "EOF", "2023-08-25",null);
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            UUID taskID0 = taskManager.createTask(null, null, null,null);
+            taskManager.createTask(null, null, null,null);
         });
     }
+
+    @Test
+    public void testWrongDateFormat(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            taskManager.createTask("First", "EOF", "25-08-2023", Priority.LOW);
+        });
+
+    }
+
+    @Test
+    public void testDeleteTaskUntilDrainOut(){
+        UUID taskID0 = taskManager.createTask("Task 0", "EOF", "2023-03-25", Priority.LOW);
+        UUID taskID1 = taskManager.createTask("Task 1", "EOW", "2023-03-24", Priority.HIGH);
+
+        assertEquals(2, taskManager.getTasks().size());
+
+        taskManager.deleteTask(taskID0);
+        assertEquals(1, taskManager.getTasks().size());
+
+        taskManager.deleteTask(taskID1);
+        assertTrue(taskManager.getTasks().isEmpty());
+        assertNotNull(taskManager.getTasks());
+    }
+
+    @Test
+    public void testCheckFalseTaskID(){
+        UUID id = UUID.randomUUID();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            taskManager.getTask(id);
+        });
+    }
+
 
 }

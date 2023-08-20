@@ -1,10 +1,8 @@
 package taskManager.test;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import taskManager.main.Priority;
 import taskManager.main.Task;
-import taskManager.main.TaskManager;
 
 import java.time.LocalDate;
 
@@ -25,14 +23,14 @@ public class TaskTest {
     }
 
     @Test
-    public void testIdUniquiness(){
+    public void testUniqueID(){
         Task task0 = new Task("first", "EOF", LocalDate.parse("2023-08-20"), Priority.HIGH);
         Task task1 = new Task("second", "EOW", LocalDate.parse("2023-08-21"), Priority.LOW);
 
         assertNotEquals(task0.getId(), task1.getId());
     }
     @Test
-    public void testIdUniquinessWithEqualsTasks() {
+    public void testUniqueIDWithEqualsTasks() {
         Task task0 = new Task("first", "EOF", LocalDate.parse("2023-08-20"), Priority.HIGH);
         Task task1 = new Task("first", "EOF", LocalDate.parse("2023-08-20"), Priority.HIGH);
 

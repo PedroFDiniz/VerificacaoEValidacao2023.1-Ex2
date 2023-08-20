@@ -1,20 +1,22 @@
 package taskManager.main;
 
-import javax.swing.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class TaskManager {
 
-    private Map<UUID, Task> tasks;
+    private final Map<UUID, Task> tasks;
 
     public TaskManager() {
        this.tasks = new HashMap<>();
     }
 
-    public UUID createTask(String title, String description, String date, Priority priority){
+    public UUID createTask(String title, String description, String date, Priority priority)  throws IllegalArgumentException {
+        checkParam(title, description, date, priority);
         Task task = new Task(title, description, LocalDate.parse(date), priority);
         UUID taskID = task.getId();
+        checkTaskID(taskID);
         tasks.put(taskID, task);
         return taskID;
     }
@@ -34,10 +36,12 @@ public class TaskManager {
     }
 
     public Task getTask(UUID taskID) {
+        checkTaskID(taskID);
         return this.tasks.get(taskID);
     }
 
     public void deleteTask(UUID taskID) {
+        checkTaskID(taskID);
         this.tasks.remove(taskID);
     }
 
@@ -47,12 +51,39 @@ public class TaskManager {
         this.tasks.replace(taskID, task);
     }
 
-    public void updateTask(UUID taskID, String title, String description, String date, Priority priority) {
+    public void updateTask(UUID taskID, String title, String description, String date, Priority priority) throws IllegalArgumentException {
+        checkTaskID(taskID);
+        checkParam(title, description, date, priority);
         Task task = this.tasks.get(taskID);
         task.setTitle(title);
         task.setDescription(description);
         task.setDate(LocalDate.parse(date));
         task.setPriority(priority);
+
+    }
+
+    private void checkParam(String title, String description, String date, Priority priority){
+        if (title == null || title.isEmpty()) {
+            throw new NullPointerException("Title cannot be null or empty");
+        }
+
+        if (description == null || description.isEmpty()) {
+            throw new NullPointerException("Description cannot be null or empty");
+        }
+
+        if (date == null || date.isEmpty()) {
+            throw new NullPointerException("Date cannot be null or empty");
+        }
+
+        if (priority == null) {
+            throw new NullPointerException("Priority cannot be null");
+        }
+
+        try {
+            LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Invalid date format");
+        }
 
     }
 }
