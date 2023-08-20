@@ -16,10 +16,10 @@ public class TaskManager {
         checkParam(title, description, date, priority);
         Task task = new Task(title, description, LocalDate.parse(date), priority);
         UUID taskID = task.getId();
-        checkTaskID(taskID);
         tasks.put(taskID, task);
         return taskID;
     }
+
     public List<Task> listTasks() {
 
         List<Task> tasksList = new ArrayList<>(this.tasks.values());
@@ -46,6 +46,7 @@ public class TaskManager {
     }
 
     public void setTaskPriority(UUID taskID, Priority priority) {
+        checkTaskID(taskID);
         Task task = this.tasks.get(taskID);
         task.setPriority(priority);
         this.tasks.replace(taskID, task);
@@ -62,21 +63,21 @@ public class TaskManager {
 
     }
 
-    private void checkParam(String title, String description, String date, Priority priority){
+    private void checkParam(String title, String description, String date, Priority priority) throws IllegalArgumentException{
         if (title == null || title.isEmpty()) {
-            throw new NullPointerException("Title cannot be null or empty");
+            throw new IllegalArgumentException ("Title cannot be null or empty");
         }
 
         if (description == null || description.isEmpty()) {
-            throw new NullPointerException("Description cannot be null or empty");
+            throw new IllegalArgumentException ("Description cannot be null or empty");
         }
 
         if (date == null || date.isEmpty()) {
-            throw new NullPointerException("Date cannot be null or empty");
+            throw new IllegalArgumentException ("Date cannot be null or empty");
         }
 
         if (priority == null) {
-            throw new NullPointerException("Priority cannot be null");
+            throw new IllegalArgumentException ("Priority cannot be null");
         }
 
         try {
@@ -85,5 +86,11 @@ public class TaskManager {
             throw new IllegalArgumentException("Invalid date format");
         }
 
+    }
+
+    private void checkTaskID(UUID taskID) throws IllegalArgumentException{
+        if (!tasks.containsKey(taskID)) {
+            throw new IllegalArgumentException("Task with the given ID does not exist");
+        }
     }
 }
