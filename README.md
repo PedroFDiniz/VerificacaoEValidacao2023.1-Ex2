@@ -3,7 +3,7 @@ University assignment for the Verification and Validation of Software class.
 
 # Exercises
 
-* [srcPedro - Processador de Boletos](https://github.com/PedroFDiniz/VerificacaoEValidacao2023.1-Ex2/tree/main/srcPedro)
+* [srcPedro - Processador de Boletos](https://github.com/PedroFDiniz/VerificacaoEValidacao2023.1-Ex2/tree/processaBoletos)
 
 * [tasKManager - Gerenciador de Tarefas](https://github.com/PedroFDiniz/VerificacaoEValidacao2023.1-Ex2/tree/taskManager/taskManager)
 
