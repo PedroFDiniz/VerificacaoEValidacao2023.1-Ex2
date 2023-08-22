@@ -16,13 +16,13 @@ University assignment for the Verification and Validation of Software class.
 
 É um padrão de projeto bem diferente do que já estávamos acostumados. Bem, não literalmente, pois só inverte a ordem das tarefas, mas por algum motivo pareceu mais difícil.
 
-Pros:
+.Pros:
 
   - Garantiu uma maior confiança no funcionamento correto do código recém implementado.
   - Poupou tempo que seria gasto para consertar falhas
   - Promoveu uma delimitação bem exata do escopo do programa
 
-Contras:
+.Contras:
 
   - Houve dificuldade em montar casos de teste, pois eles tinham que refletir o objetivo do sistema
   - O código tem de ser muito bem planejado antes da implementação, pois mudanças podem afetar outros casos de teste.
