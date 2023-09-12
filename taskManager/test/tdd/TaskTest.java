@@ -1,4 +1,4 @@
-package taskManager.test;
+package taskManager.test.tdd;
 
 import org.junit.jupiter.api.Test;
 import taskManager.main.Priority;

@@ -1,4 +1,4 @@
-package taskManager.test;
+package taskManager.test.tdd;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -99,6 +99,7 @@ public class TaskManagerTest {
         UUID taskID11 = taskManager.createTask("Task 11", "EOL", "2023-01-25", Priority.HIGH);
 
         List<Task> tasks = taskManager.listTasks();
+        System.out.println(tasks);
         LocalDate previousDate = LocalDate.MIN;
         Priority previousPriority = null;
 
