@@ -338,4 +338,89 @@ public class EquivalencePartition {
         }
 
     }
+
+    @Nested
+    @DisplayName("Test Cases for the method updateTask")
+    class testUpdateTasksEquivalencePartition {
+        @Test
+        @DisplayName("All Valid Attributes - TC-EP-26")
+        public void testUpdateAllAttributesValidTask() {
+            UUID taskID = taskManager.createTask("Task 0", "EOF", "2023-08-21", Priority.LOW);
+            taskManager.updateTask(taskID, "Task 0 Updated", "EOW", "2023-08-20", Priority.HIGH);
+            assertEquals("Task 0 Updated", taskManager.getTask(taskID).getTitle());
+            assertEquals("EOW", taskManager.getTask(taskID).getDescription());
+            assertEquals(LocalDate.parse("2023-08-20"), taskManager.getTask(taskID).getDate());
+            assertEquals(Priority.HIGH, taskManager.getTask(taskID).getPriority());
+        }
+
+        @Test
+        @DisplayName("Null Title - TC-EP-27")
+        public void testUpdateWithNullTitle() {
+            UUID taskID = taskManager.createTask("Task 0", "EOF", "2023-08-21", Priority.LOW);
+
+            assertThrows(IllegalArgumentException .class, () -> {
+                taskManager.updateTask(taskID, null, "EOW", "2023-08-20", Priority.HIGH);
+            });
+        }
+        @Test
+        @DisplayName("Null Description - TC-EP-28")
+        public void testUpdateWithNullDescription() {
+            UUID taskID = taskManager.createTask("Task 0", "EOF", "2023-08-21", Priority.LOW);
+
+            assertThrows(IllegalArgumentException .class, () -> {
+                taskManager.updateTask(taskID, "Task 0", null, "2023-08-20", Priority.HIGH);
+            });
+        }
+
+        @Test
+        @DisplayName("Null DueDate - TC-EP-29")
+        public void testUpdateWithNullDueDate() {
+            UUID taskID = taskManager.createTask("Task 0", "EOF", "2023-08-21", Priority.LOW);
+
+            assertThrows(IllegalArgumentException .class, () -> {
+                taskManager.updateTask(taskID, "Task 0", "EOW", null, Priority.HIGH);
+            });
+        }
+
+        @Test
+        @DisplayName("Null Priority - TC-EP-30")
+        public void testUpdateWithNullPriority() {
+            UUID taskID = taskManager.createTask("Task 0", "EOF", "2023-08-21", Priority.LOW);
+
+            assertThrows(IllegalArgumentException .class, () -> {
+                taskManager.updateTask(taskID, "Task 0", "EOW", "2023-08-20", null);
+            });
+        }
+
+        @Test
+        @DisplayName("Only Valid ID - TC-EP-31")
+        public void testUpdateOnLyValidID() {
+            UUID taskID = taskManager.createTask("Task 0", "EOF", "2023-08-21", Priority.LOW);
+
+            assertThrows(IllegalArgumentException .class, () -> {
+                taskManager.updateTask(taskID, null, null, null, null);
+            });
+        }
+
+        @Test
+        @DisplayName("Only Null ID - TC-EP-32")
+        public void testUpdateWithOnlyNullID() {
+            UUID taskID = taskManager.createTask("Task 0", "EOF", "2023-08-21", Priority.LOW);
+
+            assertThrows(IllegalArgumentException .class, () -> {
+                taskManager.updateTask(null, "Task 0", "EOW", "2023-08-20", Priority.MEDIUM);
+            });
+        }
+
+        @Test
+        @DisplayName("Empty ID  - TC-EP-33")
+        public void testUpdateWithEmptyID() {
+            UUID taskID = taskManager.createTask("Task 0", "EOF", "2023-08-21", Priority.LOW);
+
+            assertThrows(IllegalArgumentException .class, () -> {
+                taskManager.updateTask(null, "Task 0", "EOW", "2023-08-20", Priority.MEDIUM);
+            });
+        }
+
+    }
 }
