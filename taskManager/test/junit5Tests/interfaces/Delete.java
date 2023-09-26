@@ -10,6 +10,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+@Tag("Delete")
 public @interface Delete{
     @Target({ ElementType.TYPE, ElementType.METHOD })
     @Retention(RetentionPolicy.RUNTIME)
@@ -28,4 +29,14 @@ public @interface Delete{
     @interface Fail {
 
     }
+
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Tag("DeleteDrainOut")
+    @DisplayName("Delete Task Until Drain Out")
+    @Test
+    @interface DrainOut {
+
+    }
+
 }

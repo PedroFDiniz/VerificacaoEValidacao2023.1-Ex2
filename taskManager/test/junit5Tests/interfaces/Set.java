@@ -10,6 +10,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+@Tag("Set")
 public @interface Set {
 
     @Target({ ElementType.TYPE, ElementType.METHOD })
@@ -27,6 +28,42 @@ public @interface Set {
     @DisplayName("Set Fail")
     @Test
     @interface Fail {
+
+    }
+
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Tag("SetTitle")
+    @DisplayName("Set Title")
+    @Test
+    @interface Title {
+
+    }
+
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Tag("SetDescription")
+    @DisplayName("Set Description")
+    @Test
+    @interface Description {
+
+    }
+
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Tag("SetDate")
+    @DisplayName("Set Date")
+    @Test
+    @interface Date {
+
+    }
+
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Tag("SetPriority")
+    @DisplayName("Set Priority")
+    @Test
+    @interface Priority {
 
     }
 

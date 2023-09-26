@@ -1,4 +1,4 @@
-package taskManager.test.junit5Tests;
+package taskManager.test.junit5Tests.functionalTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

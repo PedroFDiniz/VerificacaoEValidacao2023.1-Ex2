@@ -10,6 +10,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+@Tag("Get")
 public @interface Get {
 
     @Target({ ElementType.TYPE, ElementType.METHOD })
@@ -27,6 +28,42 @@ public @interface Get {
     @DisplayName("Get Fail")
     @Test
     @interface Fail {
+
+    }
+
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Tag("GetTitle")
+    @DisplayName("Get Title")
+    @Test
+    @interface Title {
+
+    }
+
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Tag("GetDescription")
+    @DisplayName("Get Description")
+    @Test
+    @interface Description {
+
+    }
+
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Tag("GetDate")
+    @DisplayName("Get Date")
+    @Test
+    @interface Date {
+
+    }
+
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Tag("GetPriority")
+    @DisplayName("Get Priority")
+    @Test
+    @interface Priority {
 
     }
 

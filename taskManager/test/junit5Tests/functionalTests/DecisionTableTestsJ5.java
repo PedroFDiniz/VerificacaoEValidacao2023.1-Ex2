@@ -1,4 +1,4 @@
-package taskManager.test.junit5Tests;
+package taskManager.test.junit5Tests.functionalTests;
 
 import org.junit.jupiter.api.*;
 import taskManager.main.Priority;

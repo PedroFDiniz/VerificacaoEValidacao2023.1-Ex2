@@ -10,6 +10,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+@Tag("Update")
 public @interface Update{
 
     @Target({ ElementType.TYPE, ElementType.METHOD })
@@ -27,6 +28,15 @@ public @interface Update{
     @DisplayName("Update Fail")
     @Test
     @interface Fail {
+
+    }
+
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Tag("UpdatePrioritySuccessful")
+    @DisplayName("Update Priority Successful")
+    @Test
+    @interface UpdatePriority {
 
     }
 
