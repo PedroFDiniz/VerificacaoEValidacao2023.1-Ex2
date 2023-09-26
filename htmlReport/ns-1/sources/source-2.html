@@ -1,0 +1,172 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-31j"> 
+  <title>Coverage Report > ParticaoEquivalenciaTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">srcPedro.junit5Tests</a>
+</div>
+
+<h1>Coverage Summary for Class: ParticaoEquivalenciaTests (srcPedro.junit5Tests)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ParticaoEquivalenciaTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (23/23)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package srcPedro.junit5Tests;
+&nbsp;
+&nbsp;import org.junit.jupiter.api.*;
+&nbsp;
+&nbsp;import srcPedro.main.Boleto;
+&nbsp;import srcPedro.main.BoletoProcessor;
+&nbsp;import srcPedro.main.Fatura;
+&nbsp;import srcPedro.main.Pagamento;
+&nbsp;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+<b class="fc">&nbsp;public class ParticaoEquivalenciaTests {</b>
+&nbsp;    private Fatura fatura;
+&nbsp;    private Boleto boleto1;
+&nbsp;    private Boleto boleto2;
+&nbsp;    private Boleto boleto3;
+&nbsp;    private List&lt;Boleto&gt; boletos;
+&nbsp;    private BoletoProcessor boletoProcessor;
+&nbsp;
+&nbsp;    @BeforeAll
+&nbsp;    public void initBoletos() {
+<b class="fc">&nbsp;        boletoProcessor = new BoletoProcessor();</b>
+<b class="fc">&nbsp;        boleto1 = new Boleto(0,LocalDateTime.now(),0);</b>
+<b class="fc">&nbsp;        boleto2 = new Boleto(1, LocalDateTime.now(), 1000);</b>
+<b class="fc">&nbsp;        boleto3 = new Boleto(2, LocalDateTime.now(), 1400);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @BeforeEach
+&nbsp;    public void variablesInit() {
+<b class="fc">&nbsp;        fatura = new Fatura(&quot;Cliente Teste&quot;, LocalDateTime.now(), 1000);</b>
+<b class="fc">&nbsp;        boletos = new ArrayList&lt;&gt;();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testFaturaStatusPago() {
+<b class="fc">&nbsp;        boletos.add(boleto2);</b>
+<b class="fc">&nbsp;        for (Pagamento pag : boletoProcessor.processarBoletos(boletos)) {</b>
+<b class="fc">&nbsp;            fatura.addPagamento(pag);</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        Assertions.assertEquals(&quot;PAGA&quot;,fatura.getStatus());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testFaturaStatusNaoPago() {
+<b class="fc">&nbsp;        boletos.add(boleto1);</b>
+<b class="fc">&nbsp;        for (Pagamento pag : boletoProcessor.processarBoletos(boletos)) {</b>
+<b class="fc">&nbsp;            fatura.addPagamento(pag);</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        Assertions.assertEquals(&quot;NAO_PAGA&quot;,fatura.getStatus());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testFaturaStatusMaisQuePago() {
+<b class="fc">&nbsp;        boletos.add(boleto3);</b>
+<b class="fc">&nbsp;        for (Pagamento pag : boletoProcessor.processarBoletos(boletos)) {</b>
+<b class="fc">&nbsp;            fatura.addPagamento(pag);</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        Assertions.assertEquals(&quot;PAGA&quot;,fatura.getStatus());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testFaturaPagamentoNulo() {
+<b class="fc">&nbsp;        Assertions.assertThrows(NullPointerException.class,() -&gt; fatura.addPagamento(null));</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-09-25 23:07</div>
+</div>
+</body>
+</html>
