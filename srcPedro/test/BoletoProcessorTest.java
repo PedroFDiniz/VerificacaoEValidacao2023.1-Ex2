@@ -30,7 +30,7 @@ public class BoletoProcessorTest {
         Boleto boleto1 = new Boleto(123, ARBITRARY_DATE, 500.0);
         Boleto boleto2 = new Boleto(124, ARBITRARY_DATE, 400.0);
         Boleto boleto3 = new Boleto(125, ARBITRARY_DATE, 600.0);
-        List<Boleto> listaDeBoletos = new ArrayList(3);
+        List<Boleto> listaDeBoletos = new ArrayList<>(3);
         listaDeBoletos.add(boleto1);
         listaDeBoletos.add(boleto2);
         listaDeBoletos.add(boleto3);

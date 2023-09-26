@@ -10,13 +10,16 @@ public class BoletoProcessor {
     }
 
     public List<Pagamento> processarBoletos(List<Boleto> listaDeBoletos) {
-        List<Pagamento> resultado = new ArrayList();
+        List<Pagamento> resultado = new ArrayList<>();
         String TIPO_BOLETO = "BOLETO";
-        Iterator var4 = listaDeBoletos.iterator();
+        Iterator<Boleto> iterador = listaDeBoletos.iterator();
 
-        while(var4.hasNext()) {
-            Boleto boleto = (Boleto)var4.next();
+        while(iterador.hasNext()) {
+            Boleto boleto = iterador.next();
             LocalDateTime AGORA = LocalDateTime.now();
+            if (boleto.getValue() < 0) {
+                throw new IllegalArgumentException("Value can't be negative");
+            } 
             Pagamento novoPagamento = new Pagamento(boleto.getValue(), AGORA, TIPO_BOLETO);
             resultado.add(novoPagamento);
         }
