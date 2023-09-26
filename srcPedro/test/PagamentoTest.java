@@ -21,7 +21,7 @@ public class PagamentoTest {
         Random generator = new Random();
         int randomYear = 1969 + generator.nextInt(55);
         int randomMonth = 1 + generator.nextInt(12);
-        int randomDay = 1 + generator.nextInt(31);
+        int randomDay = 1 + generator.nextInt(30);
         if (randomMonth == 2 && randomDay > 28) randomDay -= 3;
 
         return LocalDate.of(randomYear, randomMonth, randomDay).atStartOfDay();

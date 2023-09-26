@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="050f0535-6804-4e63-ad06-8ddd9c317b4e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/VerificacaoEValidacao2023.1-Ex2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VerificacaoEValidacao2023.1-Ex2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VerificacaoEValidacao2023.1-Ex2/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VerificacaoEValidacao2023.1-Ex2/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/VerificacaoEValidacao2023.1-Ex2/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/VerificacaoEValidacao2023.1-Ex2/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcPedro/main/BoletoProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/srcPedro/main/BoletoProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcPedro/main/Fatura.java" beforeDir="false" afterPath="$PROJECT_DIR$/srcPedro/main/Fatura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcPedro/test/BoletoProcessorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/srcPedro/test/BoletoProcessorTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2VuhBAlOK7s4r5NJSDGS6DTtfTN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "processaBoletos",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.srcPedro in VerificacaoEValidacao2023.1-Ex2">
+    <configuration name="AVLTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="VerificacaoEValidacao2023.1-Ex2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="srcPedro.junit5Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="srcPedro.junit5Tests" />
+      <option name="MAIN_CLASS_NAME" value="srcPedro.junit5Tests.AVLTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParticaoEquivalenciaTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="VerificacaoEValidacao2023.1-Ex2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="srcPedro.junit5Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="srcPedro.junit5Tests" />
+      <option name="MAIN_CLASS_NAME" value="srcPedro.junit5Tests.ParticaoEquivalenciaTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="srcPedro in VerificacaoEValidacao2023.1-Ex2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="VerificacaoEValidacao2023.1-Ex2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="srcPedro.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="srcPedro" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.srcPedro in VerificacaoEValidacao2023.1-Ex2" />
+        <item itemvalue="JUnit.AVLTests" />
+        <item itemvalue="JUnit.ParticaoEquivalenciaTests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="050f0535-6804-4e63-ad06-8ddd9c317b4e" name="Changes" comment="" />
+      <created>1695691737310</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695691737310</updated>
+      <workItem from="1695691750278" duration="1990000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/VerificacaoEValidacao2023_1_Ex2$AVLTests.ic" NAME="AVLTests Coverage Results" MODIFIED="1695693578425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>srcPedro.junit5Tests.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/VerificacaoEValidacao2023_1_Ex2$ParticaoEquivalenciaTests.ic" NAME="ParticaoEquivalenciaTests Coverage Results" MODIFIED="1695693560895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>srcPedro.junit5Tests.*</FILTER>
+    </SUITE>
+  </component>
+</project>

@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Fatura {
-    private String status;
+    private String status = "NAO_PAGA";
     private String nomeDoCliente;
     private LocalDateTime dataDeEmissao;
     private double valorTotal;
@@ -16,7 +16,7 @@ public class Fatura {
         this.nomeDoCliente = nomeDoCliente;
         this.dataDeEmissao = dataDeEmissao;
         this.valorTotal = valorTotal;
-        this.pagamentos = new ArrayList();
+        this.pagamentos = new ArrayList<>();
     }
 
     public String getStatus() {
@@ -35,11 +35,18 @@ public class Fatura {
         return this.valorTotal;
     }
 
+    public void setValorTotal(double novoValor) {
+        this.valorTotal = novoValor;
+    }
+
     public void setStatus(String novoStatus) {
         this.status = novoStatus;
     }
 
     public void addPagamento(Pagamento pagamento) {
+        if (pagamento == null) {
+            throw new NullPointerException("O pagamento nao pode ser nulo");
+        }
         this.pagamentos.add(pagamento);
         if (this.somaPagamentos() >= this.valorTotal) {
             this.status = "PAGA";
@@ -51,7 +58,7 @@ public class Fatura {
         double total = 0.0;
 
         Pagamento pagamento;
-        for(Iterator var3 = this.pagamentos.iterator(); var3.hasNext(); total += pagamento.getValorPago()) {
+        for(Iterator<Pagamento> var3 = this.pagamentos.iterator(); var3.hasNext(); total += pagamento.getValorPago()) {
             pagamento = (Pagamento)var3.next();
         }
 
